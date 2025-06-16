@@ -33,6 +33,9 @@
     "typescript-eslint": "^8.34.0"
   },
   "dependencies": {
+    "@coral-xyz/anchor": "^0.27.0",
+    "@solana/spl-governance": "^0.3.28",
+    "@solana/web3.js": "^1.98.2",
     "esrun": "^3.2.30",
     "gill": "0.10.1",
     "kleur": "^4.1.5",

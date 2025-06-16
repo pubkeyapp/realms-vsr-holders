@@ -1,0 +1,123 @@
+{
+  "version": "0.2.0",
+  "name": "voter_stake_registry",
+  "instructions": [],
+  "accounts": [
+    {
+      "name": "voter",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "voter_authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "registrar",
+            "type": "publicKey"
+          },
+          {
+            "name": "deposits",
+            "type": {
+              "array": [
+                {
+                  "defined": "DepositEntry"
+                },
+                32
+              ]
+            }
+          },
+          {
+            "name": "voter_bump",
+            "type": "u8"
+          },
+          {
+            "name": "voter_weight_record_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "DepositEntry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lockup",
+            "type": {
+              "defined": "Lockup"
+            }
+          },
+          {
+            "name": "amount_deposited_native",
+            "type": "u64"
+          },
+          {
+            "name": "amount_initially_locked_native",
+            "type": "u64"
+          },
+          {
+            "name": "is_used",
+            "type": "bool"
+          },
+          {
+            "name": "allow_clawback",
+            "type": "bool"
+          },
+          {
+            "name": "voting_mint_config_idx",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Lockup",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "start_ts",
+            "type": "i64"
+          },
+          {
+            "name": "end_ts",
+            "type": "i64"
+          },
+          {
+            "name": "kind",
+            "type": {
+              "defined": "LockupKind"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "LockupKind",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "None"
+          },
+          {
+            "name": "Daily"
+          },
+          {
+            "name": "Monthly"
+          },
+          {
+            "name": "Cliff"
+          },
+          {
+            "name": "Constant"
+          }
+        ]
+      }
+    }
+  ]
+}
